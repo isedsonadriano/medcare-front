@@ -14,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/medico/listagem',        title: 'Médicos',           icon:'nc-circle-10',    class: '' },
     { path: '/paciente/listagem',      title: 'Pacientes',         icon:'nc-single-02',    class: '' },
     { path: '/procedimento/listagem',  title: 'Procedimentos',     icon:'nc-bullet-list-67',    class: '' },
-    { path: '/logout',                  title: 'Logout',            icon:'nc-button-power',    class: '' }
+    { path: '/logout2',                  title: 'Logout',            icon:'nc-button-power',    class: '' }
     
 ];
 
