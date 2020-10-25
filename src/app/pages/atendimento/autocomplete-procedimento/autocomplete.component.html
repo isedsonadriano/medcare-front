@@ -1,0 +1,43 @@
+<div class="row" [formGroup]="group">
+  <div class="col-md-6 pr-1">
+    <label>Descrição</label>
+    <div class="form-group">
+      
+      <div class="ng-autocomplete">
+        <ng-autocomplete
+          [data]="procedimentos"
+          [searchKeyword]="keyword"
+          (selected)='selectEvent($event)'
+          (inputChanged)='onChangeSearch($event)'
+          historyIdentifier="procedimentos"
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate">
+        </ng-autocomplete>
+      
+        <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.descricao"></a>
+        </ng-template>
+      
+        <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+        </ng-template>
+
+        <div *ngIf="submetido && formProcedimento.descricao.errors" class="invalid-feedback d-block">
+          Campo obrigatório
+        </div>
+      
+      </div>
+      
+    </div>
+  </div>
+  <div class="col-md-6 px-1">
+    <div class="form-group">
+      <label>Quantidade</label>
+      <input class="form-control" formControlName="quantidade" placeholder="Quantidade">
+      <div *ngIf="submetido && formProcedimento.quantidade.errors" class="invalid-feedback d-block">
+        Campo obrigatório
+      </div>
+    </div>
+  </div>
+
+</div>

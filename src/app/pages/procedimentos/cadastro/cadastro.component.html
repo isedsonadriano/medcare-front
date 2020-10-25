@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card demo-icons">
+      <div class="card-header">
+       
+        <div class="col-md-12">
+          <div class="card card-user">
+            <div class="card-header">
+              <h5 class="card-title">Novo procedimento</h5>
+            </div>
+            <div class="card-body">
+              <form  (ngSubmit)="cadastrar()" [formGroup]="procedimentoForm">
+              
+                <div class="row">
+                  <div class="col-md-2 pr-1">
+                    <div class="form-group" >
+                      <label>Código</label>
+                      <input type="text" id="codigo" class="form-control" formControlName="codigo" [ngClass]="{ 'is-invalid': submetido && form.codigo.errors }">
+                    </div>
+                    <div *ngIf="submetido && form.codigo.errors" class="invalid-feedback d-block">
+                      <div *ngIf="form.codigo.errors.required">Campo obrigatório</div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-8 px-1">
+                    <div class="form-group">
+                      <label>Descrição</label>
+                      <input type="text" class="form-control" formControlName="descricao" [ngClass]="{ 'is-invalid': submetido && form.descricao.errors }">
+                    </div>
+                    <div *ngIf="submetido && form.descricao.errors" class="invalid-feedback d-block">
+                      <div *ngIf="form.descricao.errors.required">Campo obrigatório</div>
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Valor</label>
+                      <input type="text" class="form-control" class="form-control" formControlName="valor" 
+                                    [ngClass]="{ 'is-invalid': submetido && form.valor.errors }"
+                                    [textMask]="{mask: MASKS.number.textMask}">
+                                    
+                      <div *ngIf="submetido && form.valor.errors" class="invalid-feedback d-block">
+                        <div *ngIf="submetido && form.valor.errors" class="invalid-feedback d-block">
+                          <div *ngIf="form.valor.errors.required">Campo obrigatório</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="update ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round">Registrar</button>
+                  </div>
+                </div>
+                
+              </form>
+            </div>
+          </div>  
+
+      </div>
+    </div>
+  </div>
+</div>

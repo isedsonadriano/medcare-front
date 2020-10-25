@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card demo-icons">
+      <div class="card-header">
+
+        <div class="col-md-12">
+          <div class="card card-user">
+            <div class="card-header">
+              <h5 class="card-title">Novo atendimento</h5>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="cadastrar()" [formGroup]="atendimentoForm">
+                <div formGroupName="paciente">
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      
+                      <div class="form-group">
+                        <label>Código do paciente</label>
+                        <input type="text" class="form-control" formControlName="codigo"
+                          (blur)="capturarPaciente($event)" [ngClass]="{ 'is-invalid': submetido && form.paciente.get('codigo').errors}">
+                          <div *ngIf="submetido && form.paciente.get('codigo').errors" class="invalid-feedback d-block">
+                            Campo obrigatório
+                          </div>
+                      </div>
+                     
+                    </div>
+
+                    <div class="col-md-3 px-1">
+                      <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" class="form-control" disabled="disabled" formControlName="nome" [ngClass]="{ 'is-invalid': submetido && form.paciente.get('codigo').errors}">
+                      </div>
+                    </div>
+
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Cpf</label>
+                        <input type="text" class="form-control" disabled="disabled" formControlName="cpf" [ngClass]="{ 'is-invalid': submetido && form.paciente.get('codigo').errors}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-3 pr-1">
+                    <div class="form-group">
+                      <label>Tipo</label>
+                      <select name="select" class="form-control" formControlName="tipo" [ngClass]="{ 'is-invalid': submetido && form.tipo.errors }">
+                        <option value="Particular">Particular</option>
+                        <option value="Convênio" selected>Convênio</option>
+                      </select>
+                      <div *ngIf="submetido && form.tipo.errors" class="invalid-feedback d-block">
+                        Campo obrigatório
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 pl-1">
+                    <div class="form-group">
+                      <label>Tipo do atendimento</label>
+                      <select name="select" class="form-control" formControlName="tipoAtendimento" [ngClass]="{ 'is-invalid': submetido && form.tipoAtendimento.errors }">
+                        <option value="Particular">Consulta</option>
+                        <option value="Convênio" selected>Exame</option>
+                      </select>
+                      <div *ngIf="submetido && form.tipoAtendimento.errors" class="invalid-feedback d-block">
+                        Campo obrigatório
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Médico</label>
+                      <autocomplete-medico [group]="form.medico" [submetido]="submetido"></autocomplete-medico>
+                    </div>
+                    <div *ngIf="submetido && form.medico.get('id').errors" class="invalid-feedback d-block">
+                      Campo obrigatório
+                    </div>
+                  </div>
+                </div>
+
+                <div formArrayName="procedimentos" *ngFor="let procedimentoForm of procedimentosForm.controls; let i = index;">
+                    <autocomplete-procedimento [index]="i" [group]="procedimentoForm" [submetido]="submetido"></autocomplete-procedimento>
+                </div>
+
+                <div class="row">
+                  <div class="update ml-auto mr-auto">
+                    <button type="button" class="btn btn-primary btn-sm" (click)="adicionarProcedimento()">Adicionar Procedimento</button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Observações</label>
+                      <textarea class="form-control textarea" formControlName="observacoes"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="update ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round">Registrar</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

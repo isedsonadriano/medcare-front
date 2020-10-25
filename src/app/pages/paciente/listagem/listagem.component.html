@@ -1,0 +1,93 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Listagem de pacientes</h4>
+      </div>
+
+      <p>
+        <a class="ml-4" [routerLink]="['/paciente/cadastro']"><button class="btn btn-primary btn-sm">Novo Paciente</button></a>
+      </p>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Código
+              </th>
+              <th>
+                Nome
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                Cpf
+              </th>
+              <th>
+                Ações
+              </th>
+            </thead>
+            
+              <tr *ngFor="let paciente of pacientes">
+                <td>
+                  {{paciente.codigo}}
+                </td>
+                <td>
+                  {{paciente.nome}}
+                </td>
+                <td>
+                  {{paciente.email}}
+                </td>
+                <td>
+                  {{paciente.cpf | cpf}}
+                </td>
+                <td>
+                  <button  (click)="open(mymodal, paciente)"  class="btn btn-info btn-icon btn-sm " rel="tooltip" type="button" data-original-title="" title=""><i class="fa fa-user"></i></button>
+                  <a [routerLink]="['/paciente/editar',paciente.id]">
+                    <button class="btn btn-success btn-icon btn-sm " rel="tooltip" type="button" data-original-title="" title=""><i class="fa fa-edit"></i></button>  
+                  </a>
+                  <a [routerLink]="['/paciente/exclusao',paciente.id]">
+                     <button class="btn btn-danger btn-icon btn-sm " rel="tooltip" type="button" data-original-title="" title=""><i class="fa fa-times"></i></button>
+                  </a>
+                </td>
+              </tr>  
+              
+              <ng-template #mymodal let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title"></h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                   <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-user">
+                        <div class="image">
+                          <img src="assets/img/hospital.jpg" alt="...">
+                        </div>
+                        <div class="card-body">
+                          <visualizar-paciente [paciente]="paciente"></visualizar-paciente>
+                        </div>
+                        <div class="card-footer">
+                          <hr>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary btn-sm" (click)="modal.close('Save click')">Ok</button>
+                </div>
+              </ng-template>
+  
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

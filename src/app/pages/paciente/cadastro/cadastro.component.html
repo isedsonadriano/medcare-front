@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card demo-icons">
+      <div class="card-header">
+       
+        <div class="col-md-12">
+          <div class="card card-user">
+            <div class="card-header">
+              <h5 class="card-title">Novo paciente</h5>
+            </div>
+            <div class="card-body">
+              <form  (ngSubmit)="cadastrar()" [formGroup]="pacienteForm">
+              
+                <div class="row">
+
+                  <div class="col-md-2 pr-1">
+                    <div class="form-group" >
+                      <label>Código</label>
+                      <input type="text" id="codigo" class="form-control" formControlName="codigo" [ngClass]="{ 'is-invalid': submetido && form.codigo.errors }">
+                    </div>
+                    <div *ngIf="submetido && form.codigo.errors" class="invalid-feedback d-block">
+                      <div *ngIf="form.codigo.errors.required">Campo obrigatório</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-8 px-1">
+                    <div class="form-group">
+                      <label>Nome</label>
+                      <input type="text" class="form-control" formControlName="nome" [ngClass]="{ 'is-invalid': submetido && form.nome.errors }">
+                    </div>
+                    <div *ngIf="submetido && form.codigo.errors" class="invalid-feedback d-block">
+                      <div *ngIf="form.codigo.errors.required">Campo obrigatório</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-6 ">
+                    <div class="form-group">
+                      <label>CPF</label>
+                      <input type="text" class="form-control" formControlName="cpf" 
+                                              [ngClass]="{ 'is-invalid': submetido && form.cpf.errors }" 
+                                              [textMask]="{mask: MASKS.cpf.textMask}">
+                    </div>
+                    <div *ngIf="submetido && form.cpf.errors" class="invalid-feedback d-block">
+                      <div *ngIf="form.cpf.errors.required">
+                        Campo obrigatório
+                      </div>
+                      <div *ngIf="form.cpf.errors.cpf">
+                          Formato de cpf inválido.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control"formControlName="email" [ngClass]="{ 'is-invalid': submetido && form.email.errors }">
+                    </div>
+                    <div *ngIf="submetido && form.email.errors" class="invalid-feedback d-block">
+                      <div *ngIf="form.email.errors.required">
+                        Campo obrigatório
+                      </div>
+                      <div *ngIf="form.email.errors.email">
+                          Formato de email inválido.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Telefone</label>
+                      <input type="text" class="form-control" class="form-control"formControlName="telefone" 
+                      [ngClass]="{ 'is-invalid': submetido && form.telefone.errors }"  [textMask]="{mask: MASKS.telefone.textMaskFunction}">
+
+                      <div *ngIf="submetido && form.telefone.errors" class="invalid-feedback d-block">
+                        <div *ngIf="form.telefone.errors.required">
+                          Campo obrigatório
+                        </div>
+                        <div *ngIf="form.telefone.errors.telefone">
+                            Formato de telefone inválido.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+
+                  <div class="update ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round">Registrar</button>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>  
+      </div>
+    </div>
+  </div>
+</div>

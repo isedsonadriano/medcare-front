@@ -1,0 +1,27 @@
+<div class="ng-autocomplete" >
+  <ng-autocomplete
+    [data]="medicos"
+    [searchKeyword]="keyword"
+    (selected)='selectEvent($event)'
+    (inputChanged)='onChangeSearch($event)'
+    (inputCleared)="clear($event)"
+    historyIdentifier="medicos"
+    [historyHeading]="recentes"
+    [itemTemplate]="itemTemplate"
+    [notFoundTemplate]="notFoundTemplate">
+  </ng-autocomplete>
+
+  <div *ngIf="submetido && formMedico.nome.errors" class="invalid-feedback d-block">
+    Campo obrigatório
+  </div>
+
+
+  <ng-template #itemTemplate let-item>
+    <a [innerHTML]="item.nome"></a>
+  </ng-template>
+
+  <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+  </ng-template>
+</div>
+
