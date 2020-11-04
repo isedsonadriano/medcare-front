@@ -28,7 +28,7 @@ export class CadastroAtendimentoComponent extends BaseComponent implements OnIni
         private spinner: NgxSpinnerService,
         private atendimentoService: AtendimentoService,
         private router: Router,
-        private toastr: ToastrService,) {
+        private toastr: ToastrService) {
         super();
     }
 

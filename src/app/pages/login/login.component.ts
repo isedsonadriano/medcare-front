@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Usuario } from 'app/models/usuario';
 import { BaseComponent } from 'app/pages/base.component';
 import { LoginService } from 'app/services/login/login.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'login',
@@ -18,6 +19,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
               private router: Router,
+              private spinner: NgxSpinnerService,
               private loginService: LoginService){
     super();
     
@@ -34,6 +36,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   login() {
     this.submetido = true;
     if (!this.loginForm.invalid) {
+      this.spinner.show();
       this.usuario = Object.assign({}, this.usuario, this.loginForm.value)
       this.loginService.login(this.usuario)
       .subscribe(
@@ -44,11 +47,13 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   processarSucesso(response:any){
+    this.spinner.hide();
     this.loginService.localStorage.salvarDadosLocaisUsuario(response);
     this.router.navigate(['/dashboard']); 
   }
 
   processarFalha(fail:any){
+    this.spinner.hide();
     this.senhaInvalida = true;
   }
 
